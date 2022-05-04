@@ -49,6 +49,8 @@ namespace lidl_twitter_user_service
             {
                 endpoints.MapControllers();
             });
+
+            PrepDb.PrepPopulation(app);
         }
     }
 }
