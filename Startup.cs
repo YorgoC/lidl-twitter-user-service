@@ -30,6 +30,7 @@ namespace lidl_twitter_user_service
             services.AddDbContext<AppDbContext>(opt =>
                 opt.UseInMemoryDatabase("InMemory"));
             services.AddScoped<IUserRepo, UserRepo>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
         }
 
