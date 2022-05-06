@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.810.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lidl-twitter-user-service", "lidl-twitter-user-service.csproj", "{3B5547DA-8EE5-45EC-8FAC-483D1278CF8A}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AFCA0068-7FBC-4D4A-A29A-177A2265EA7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{3B5547DA-8EE5-45EC-8FAC-483D1278CF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B5547DA-8EE5-45EC-8FAC-483D1278CF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B5547DA-8EE5-45EC-8FAC-483D1278CF8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFCA0068-7FBC-4D4A-A29A-177A2265EA7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFCA0068-7FBC-4D4A-A29A-177A2265EA7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFCA0068-7FBC-4D4A-A29A-177A2265EA7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFCA0068-7FBC-4D4A-A29A-177A2265EA7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
