@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace lidl_twitter_user_service.DTOs
 {
-    public class create_user
+    public class CreateUser
     {
         [Required]
         public string Username { get; set; }
