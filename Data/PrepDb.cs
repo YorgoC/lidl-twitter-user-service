@@ -2,31 +2,45 @@
 using System.Linq;
 using lidl_twitter_user_service.Models;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace lidl_twitter_user_service.Data
 {
     public static class PrepDb
     {
-        public static void PrepPopulation(IApplicationBuilder app)
+        public static void PrepPopulation(IApplicationBuilder app, bool isProd)
         {
             using(var serviceScope = app.ApplicationServices.CreateScope())
             {
-                SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>());
+                SeedData(serviceScope.ServiceProvider.GetService<AppDbContext>(), isProd);
             }
 
         }
 
-        private static void SeedData(AppDbContext context)
+        private static void SeedData(AppDbContext context, bool isProd)
         {
+            if (isProd)
+            {
+                Console.WriteLine("--> Attempting to apply migrations...");
+                try
+                {
+                    context.Database.Migrate();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine($"--> Could not run migrations: {e.Message}");
+                }
+
+            }
 
             if (!context.Users.Any())
             {
                 Console.WriteLine("--> seeding data");
                 context.Users.AddRange(
-                    new User() {Email="test1@gmail.nl", UserName="Tester1"},
-                    new User() { Email = "test2@gmail.nl", UserName = "Tester2" },
-                    new User() { Email = "test3@gmail.nl", UserName = "Tester3" }
+                    new User() {Auth0Id = "blahblah1", UserName="Tester1"},
+                    new User() {Auth0Id = "blahblah2", UserName = "Tester2" },
+                    new User() {Auth0Id = "blahblah3", UserName = "Tester3" }
                 );
 
                 context.SaveChanges();

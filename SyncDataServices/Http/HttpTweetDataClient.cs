@@ -26,7 +26,6 @@ namespace lidl_twitter_user_service.SyncDataServices.Http
                 Encoding.UTF8,
                 "application/json");
 
-            //put uri in config
             var response = await _httpClient.PostAsync($"{_configuration["TweetService"]}", httpContent);
 
             if(response.IsSuccessStatusCode)

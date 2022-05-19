@@ -11,25 +11,40 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MySql.EntityFrameworkCore.Extensions;
 using Microsoft.Extensions.Logging;
 
 namespace lidl_twitter_user_service
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IConfiguration Configuration { get; }
+        private readonly IWebHostEnvironment _env;
+
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _env = env;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient<ITweetDataClient, HttpTweetDataClient>();
-            services.AddDbContext<AppDbContext>(opt =>
-                opt.UseInMemoryDatabase("InMemory"));
+
+            // if (_env.IsProduction())
+            // {
+                Console.WriteLine("--> Using MySQL server Db");
+                services.AddDbContext<AppDbContext>(opt =>
+                    opt.UseMySQL(Configuration.GetConnectionString("UserServiceDB")));
+            // }
+            // else
+            // {
+            //     Console.WriteLine("--> Using InMemory Db");
+            //     services.AddDbContext<AppDbContext>(opt =>
+            //         opt.UseInMemoryDatabase("InMemory"));
+            // }
+
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
@@ -54,7 +69,7 @@ namespace lidl_twitter_user_service
                 endpoints.MapControllers();
             });
 
-            PrepDb.PrepPopulation(app);
+          //  PrepDb.PrepPopulation(app, env.IsProduction());
         }
     }
 }
