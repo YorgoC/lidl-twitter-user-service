@@ -32,18 +32,18 @@ namespace lidl_twitter_user_service
         {
             services.AddHttpClient<ITweetDataClient, HttpTweetDataClient>();
 
-            // if (_env.IsProduction())
-            // {
+            if (_env.IsProduction())
+            {
                 Console.WriteLine("--> Using MySQL server Db");
                 services.AddDbContext<AppDbContext>(opt =>
                     opt.UseMySQL(Configuration.GetConnectionString("UserServiceDB")));
-            // }
-            // else
-            // {
-            //     Console.WriteLine("--> Using InMemory Db");
-            //     services.AddDbContext<AppDbContext>(opt =>
-            //         opt.UseInMemoryDatabase("InMemory"));
-            // }
+            }
+            else
+            {
+                Console.WriteLine("--> Using InMemory Db");
+                services.AddDbContext<AppDbContext>(opt =>
+                    opt.UseInMemoryDatabase("InMemory"));
+            }
 
             services.AddScoped<IUserRepo, UserRepo>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -69,7 +69,7 @@ namespace lidl_twitter_user_service
                 endpoints.MapControllers();
             });
 
-          //  PrepDb.PrepPopulation(app, env.IsProduction());
+          PrepDb.PrepPopulation(app, env.IsProduction());
         }
     }
 }

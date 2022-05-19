@@ -20,8 +20,6 @@ namespace lidl_twitter_user_service.Models
 
         public string Bio { get; set; }
         
-        [Required]
-        [DefaultValue("user")]
         public string Role { get; set; }
         
         public string Location { get; set; }

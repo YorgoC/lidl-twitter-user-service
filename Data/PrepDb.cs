@@ -25,6 +25,7 @@ namespace lidl_twitter_user_service.Data
                 Console.WriteLine("--> Attempting to apply migrations...");
                 try
                 {
+                    context.Database.EnsureCreated();
                     context.Database.Migrate();
                 }
                 catch(Exception e)

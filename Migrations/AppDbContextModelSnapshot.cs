@@ -36,7 +36,6 @@ namespace lidl_twitter_user_service.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Role")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("UserName")

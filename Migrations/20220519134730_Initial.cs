@@ -17,7 +17,7 @@ namespace lidl_twitter_user_service.Migrations
                     UserName = table.Column<string>(type: "text", nullable: false),
                     MentionName = table.Column<string>(type: "text", nullable: true),
                     Bio = table.Column<string>(type: "text", nullable: true),
-                    Role = table.Column<string>(type: "text", nullable: false),
+                    Role = table.Column<string>(type: "text", nullable: true),
                     Location = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
