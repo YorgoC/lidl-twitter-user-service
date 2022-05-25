@@ -37,5 +37,6 @@
     <PackageReference Include="MySql.Data" Version="8.0.29" />
     <PackageReference Include="MySql.Data.EntityFramework" Version="8.0.29" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.13" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.3.0" />
   </ItemGroup>
 </Project>
