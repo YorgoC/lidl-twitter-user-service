@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using lidl_twitter_user_service.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using lidl_twitter_user_service.AsyncDataServices;
 using lidl_twitter_user_service.Models;
 using lidl_twitter_user_service.SyncDataServices.Http;
 
@@ -17,15 +18,18 @@ namespace lidl_twitter_user_service.Controllers
         private readonly IUserRepo _repository;
         private readonly IMapper _mapper;
         private readonly ITweetDataClient _tweetDataClient;
+        private readonly IMessageBusClient _messageBusClient;
 
         public UsersController(
             IUserRepo repository,
             IMapper mapper,
-            ITweetDataClient tweetDataClient)
+            ITweetDataClient tweetDataClient,
+            IMessageBusClient messageBusClient)
         {
             _repository = repository;
             _mapper = mapper;
             _tweetDataClient = tweetDataClient;
+            _messageBusClient = messageBusClient;
         }
 
         [HttpGet]
@@ -58,6 +62,7 @@ namespace lidl_twitter_user_service.Controllers
 
             var userReadDto = _mapper.Map<ReadUser>(userModel);
 
+            //Send Sync message
             try
             {
                 await _tweetDataClient.SendUserToTweet(userReadDto);
@@ -65,6 +70,18 @@ namespace lidl_twitter_user_service.Controllers
             catch(Exception e)
             {
                 Console.WriteLine($"--> Could not send synchronously: {e.Message}");
+            }
+            
+            //Send Async message
+            try
+            {
+                var publishedUserDto = _mapper.Map<PublishedUser>(userReadDto);
+                publishedUserDto.Event = "User_Published";
+                _messageBusClient.PublishNewUser(publishedUserDto);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"--> Could not send Asynchronously: {e.Message}");
             }
 
             return CreatedAtRoute(nameof(GetUserById), new { Id = userReadDto.Id }, userReadDto);

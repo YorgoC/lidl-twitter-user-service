@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using lidl_twitter_user_service.AsyncDataServices;
 using lidl_twitter_user_service.Data;
 using lidl_twitter_user_service.SyncDataServices.Http;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +33,8 @@ namespace lidl_twitter_user_service
         {
             services.AddHttpClient<ITweetDataClient, HttpTweetDataClient>();
 
+            services.AddSingleton<IMessageBusClient, MessageBusClient>();
+            
             if (_env.IsProduction())
             {
                 Console.WriteLine("--> Using MySQL server Db");

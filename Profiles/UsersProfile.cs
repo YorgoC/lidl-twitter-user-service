@@ -12,6 +12,7 @@ namespace lidl_twitter_user_service.Profiles
             //source -> target
             CreateMap<User, ReadUser>();
             CreateMap<CreateUser, User>();
+            CreateMap<ReadUser, PublishedUser>();
         }
     }
 }
