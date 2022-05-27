@@ -8,7 +8,7 @@ using lidl_twitter_user_service.Data;
 namespace lidl_twitter_user_service.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220519134730_Initial")]
+    [Migration("20220527094533_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
