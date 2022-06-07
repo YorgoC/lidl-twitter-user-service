@@ -12,5 +12,7 @@ namespace lidl_twitter_user_service.Data
         IEnumerable<User> getAllUsers();
         User GetUserById(int id);
         void CreateUser(User user);
+
+        User GetUserByAuth0Id(string auth0Id);
     }
 }

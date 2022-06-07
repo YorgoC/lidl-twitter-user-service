@@ -33,6 +33,14 @@ namespace lidl_twitter_user_service
         {
             services.AddHttpClient<ITweetDataClient, HttpTweetDataClient>();
 
+            services.AddCors(o =>
+            {
+                o.AddPolicy("CorsPolicy", builder =>
+                        builder.AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                    );
+            });
             services.AddSingleton<IMessageBusClient, MessageBusClient>();
             
             if (_env.IsProduction())
@@ -65,6 +73,8 @@ namespace lidl_twitter_user_service
 
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

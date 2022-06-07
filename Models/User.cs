@@ -13,7 +13,6 @@ namespace lidl_twitter_user_service.Models
         [Required]
         public string Auth0Id { get; set; }
         
-        [Required]
         public string UserName { get; set; }
         
         public string MentionName { get; set; }

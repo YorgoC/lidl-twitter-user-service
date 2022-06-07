@@ -11,6 +11,7 @@ using lidl_twitter_user_service.SyncDataServices.Http;
 
 namespace lidl_twitter_user_service.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
@@ -46,6 +47,18 @@ namespace lidl_twitter_user_service.Controllers
         {
             var userItem = _repository.GetUserById(id);
             if(userItem != null)
+            {
+                return Ok(_mapper.Map<ReadUser>(userItem));
+            }
+
+            return NotFound();
+        }
+
+        [HttpPost("auth0",Name = "GetUserByAuth0Id")]
+        public ActionResult<ReadUser> GetUserByAuth0Id(CreateUser createUser)
+        {
+            var userItem = _repository.GetUserByAuth0Id(createUser.Auth0Id);
+            if (userItem != null)
             {
                 return Ok(_mapper.Map<ReadUser>(userItem));
             }

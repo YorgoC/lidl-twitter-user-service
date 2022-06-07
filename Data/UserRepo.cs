@@ -24,6 +24,11 @@ namespace lidl_twitter_user_service.Data
             _context.Users.Add(user);
         }
 
+        public User GetUserByAuth0Id(string auth0Id)
+        {
+            return _context.Users.FirstOrDefault(u => u.Auth0Id == auth0Id);
+        }
+
         public IEnumerable<User> getAllUsers()
         {
             return _context.Users.ToList();
