@@ -38,7 +38,6 @@ namespace lidl_twitter_user_service.Controllers
         {
             Console.WriteLine("--> Getting Users.... ");
             var userItem = _repository.getAllUsers();
-
             return Ok(_mapper.Map<IEnumerable<ReadUser>>(userItem));
         }
 
@@ -54,16 +53,18 @@ namespace lidl_twitter_user_service.Controllers
             return NotFound();
         }
 
-        [HttpPost("auth0",Name = "GetUserByAuth0Id")]
-        public ActionResult<ReadUser> GetUserByAuth0Id(CreateUser createUser)
+        [HttpPost("auth0",Name = "CheckIfUserIsRegisteredByAuth0Id")]
+        public ActionResult<Boolean> GetUserByAuth0Id(CreateUser createUser)
         {
+            
+            Console.WriteLine("--> Checking auth0Id");
             var userItem = _repository.GetUserByAuth0Id(createUser.Auth0Id);
             if (userItem != null)
             {
-                return Ok(_mapper.Map<ReadUser>(userItem));
+                return true;
             }
 
-            return NotFound();
+            return false;
         }
 
         [HttpPost]

@@ -39,9 +39,9 @@ namespace lidl_twitter_user_service.Data
             {
                 Console.WriteLine("--> seeding data");
                 context.Users.AddRange(
-                    new User() {Auth0Id = "blahblah1", UserName="Tester1"},
-                    new User() {Auth0Id = "blahblah2", UserName = "Tester2" },
-                    new User() {Auth0Id = "blahblah3", UserName = "Tester3" }
+                    new User() {Auth0Id = "blahblah1", UserName="Tester1", MentionName = "Testboy1"},
+                    new User() {Auth0Id = "blahblah2", UserName = "Tester2", MentionName = "Testboy2" },
+                    new User() {Auth0Id = "blahblah3", UserName = "Tester3", MentionName = "Testboy3" }
                 );
 
                 context.SaveChanges();
