@@ -54,7 +54,7 @@ namespace lidl_twitter_user_service.Controllers
         }
 
         [HttpPost("auth0",Name = "CheckIfUserIsRegisteredByAuth0Id")]
-        public ActionResult<Boolean> GetUserByAuth0Id(CreateUser createUser)
+        public ActionResult<Boolean> CheckIfUserIsRegisteredByAuth0Id(CreateUser createUser)
         {
             
             Console.WriteLine("--> Checking auth0Id");
@@ -65,6 +65,21 @@ namespace lidl_twitter_user_service.Controllers
             }
 
             return false;
+        }
+        
+        [HttpPost("getuser",Name = "GetUserByAuth0Id")]
+        public ActionResult<ReadUser> GetUserByAuth0Id(CreateUser createUser)
+        {
+            
+            Console.WriteLine("--> Checking auth0Id");
+            var userItem = _repository.GetUserByAuth0Id(createUser.Auth0Id);
+            if (userItem != null)
+            {
+                return Ok(_mapper.Map<ReadUser>(userItem));
+            }
+            
+            return NotFound();
+            
         }
 
         [HttpPost]
