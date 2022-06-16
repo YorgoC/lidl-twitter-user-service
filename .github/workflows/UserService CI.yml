@@ -29,7 +29,7 @@ jobs:
     - name: Install .NET Core
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 6.x.x
+        dotnet-version: 5.x.x
 
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.2
@@ -45,7 +45,7 @@ jobs:
 
     # Execute all unit tests in UserService
     - name: UserService Tests
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test lidl-twitter-user-service.sln
 
 
   sonarcloud:
