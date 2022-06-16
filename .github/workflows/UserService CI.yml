@@ -45,8 +45,7 @@ jobs:
 
     # Execute all unit tests in UserService
     - name: UserService Tests
-      working-directory: UserServiceTest
-      run: dotnet test
+      run: dotnet test --no-build --verbosity normal
 
 
   sonarcloud:
