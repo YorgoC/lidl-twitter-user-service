@@ -17,11 +17,6 @@ pipeline {
                    echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
             }
         }
-        stage('Clean') {
-          steps {
-            bat "msbuild.exe ${workspace}\\<path-to-solution\\<solution-project-name>.sln" /nologo /nr:false /p:platform=\"x64\" /p:configuration=\"release\" /t:clean"
-          }
-        }
         stage('Build') {
          steps {
           bat "msbuild.exe ${workspace}\\<path-to-solution>\\<solution-name>.sln /nologo /nr:false  /p:platform=\"x64\" /p:configuration=\"release\" /p:PackageCertificateKeyFile=<path-to-certificate-file>.pfx /t:clean;restore;rebuild"
