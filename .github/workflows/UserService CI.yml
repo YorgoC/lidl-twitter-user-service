@@ -41,7 +41,7 @@ jobs:
       run: nuget restore lidl-twitter-user-service.sln
       
     - name: Build the Solution
-      run: msbuild lidl-twitter-user-service.sln /t:UserService
+      run: msbuild lidl-twitter-user-service.sln
 
     # Execute all unit tests in UserService
     - name: UserService Tests
