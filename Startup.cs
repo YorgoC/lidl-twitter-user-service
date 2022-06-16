@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using lidl_twitter_user_service.AsyncDataServices;
 using lidl_twitter_user_service.Data;
-using lidl_twitter_user_service.SyncDataServices.Http;
+//using lidl_twitter_user_service.SyncDataServices.Http;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -31,7 +31,7 @@ namespace lidl_twitter_user_service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient<ITweetDataClient, HttpTweetDataClient>();
+          //  services.AddHttpClient<ITweetDataClient, HttpTweetDataClient>();
 
             services.AddCors(o =>
             {
