@@ -2,8 +2,6 @@ name: UserService CI
 
 on:
   push:
-    paths:
-      - 'lidl-twitter-user-service/**'
     branches: 
       - development
       - master
