@@ -34,7 +34,7 @@ jobs:
         # Set the target Azure Kubernetes Service (AKS) cluster. 
     - uses: azure/aks-set-context@v1
       with:
-        creds: '${{ secrets.AZURE_CREDENTIALS }}'
+        creds: '{  "clientId": "06b4752a-4723-4bce-844c-f3a4642812ea","clientSecret": "2ua8Q~6jJ-PYVRHskc04s8yU7kVNwGVq3ER~yc~N","subscriptionId": "54f964cc-016a-4568-a705-44c5af36588f","tenantId": "0172c9f5-f568-42ac-9eb8-24ef84881faa","activeDirectoryEndpointUrl": "https://login.microsoftonline.com","resourceManagerEndpointUrl": "https://management.azure.com/","activeDirectoryGraphResourceId": "https://graph.windows.net/","sqlManagementEndpointUrl": "https://management.core.windows.net:8443/","galleryEndpointUrl": "https://gallery.azure.com/","managementEndpointUrl": "https://management.core.windows.net/"}'
         cluster-name: ${{ env.CLUSTER_NAME }}
         resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     
