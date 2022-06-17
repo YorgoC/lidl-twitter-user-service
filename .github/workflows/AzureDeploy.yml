@@ -8,7 +8,7 @@ on:
 env:
   REGISTRY_NAME: "lidltwittercr"
   CLUSTER_NAME: "lidltwitter"
-  CLUSTER_RESOURCE_GROUP: "lidl-twitter_group"
+  CLUSTER_RESOURCE_GROUP: "lidltwittergroup"
   NAMESPACE: "default"
   APP_NAME: "userservice"
   
