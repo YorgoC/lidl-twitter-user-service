@@ -6,7 +6,7 @@ on:
       - master
 
 env:
-  REGISTRY_NAME: "lidltwittercr"
+  REGISTRY_NAME: "lidltwittercr2"
   CLUSTER_NAME: "lidltwitter"
   CLUSTER_RESOURCE_GROUP: "lidltwittergroup"
   NAMESPACE: "default"
