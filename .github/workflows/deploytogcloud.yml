@@ -16,7 +16,7 @@ env:
   GITHUB_SHA: ${{ github.sha }} 
   GITHUB_REF: ${{ github.ref }} 
   IMAGE: yorgoc/userservice
-  REGISTRY_HOSTNAME: gcr.io
+  REGISTRY_HOSTNAME: gcr.io/lidltwitterrepo
 
 
 jobs:
